@@ -35,31 +35,31 @@ export default function HorizontalBar({
             layout="vertical"
             margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" horizontal={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" horizontal={false} />
             <XAxis
               type="number"
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: "#737373" }}
               tickLine={false}
-              axisLine={{ stroke: "hsl(var(--border))" }}
+              axisLine={{ stroke: "#262626" }}
               tickFormatter={(v: number) => formatRupiah(v)}
             />
             <YAxis
               type="category"
               dataKey="name"
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: "#737373" }}
               tickLine={false}
-              axisLine={{ stroke: "hsl(var(--border))" }}
+              axisLine={{ stroke: "#262626" }}
               width={140}
             />
             <Tooltip 
               formatter={(value) => formatRupiah(Number(value))}
               contentStyle={{
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "6px",
+                backgroundColor: "#111",
+                border: "1px solid #262626",
+                borderRadius: 0,
               }}
             />
-            <Bar dataKey="value" fill={color} radius={[0, 4, 4, 0]} />
+            <Bar dataKey="value" fill={color} radius={[0, 0, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>

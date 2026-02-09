@@ -51,14 +51,14 @@ export default function ScoreCard({
   };
 
   return (
-    <Card className="hover:shadow-md transition-shadow border-l-4 border-l-[#00D084]">
+    <Card className="border-t-2 border-t-[#00D084]">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-xs font-medium text-amber-400 uppercase tracking-wide">
           {label}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-bold text-[#0D3B2E] tracking-tight">
+        <div className="text-2xl font-bold text-foreground tracking-tight font-mono">
           {formatValue(value, format)}
         </div>
         

@@ -22,15 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${plusJakartaSans.variable} font-sans antialiased bg-background`}
+        className={`${plusJakartaSans.variable} font-sans antialiased bg-background text-foreground`}
       >
         <Sidebar />
         <div className="md:ml-56 min-h-screen">
-          <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/95 px-6 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-background/95 px-6 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/80">
             <div className="flex items-center gap-4">
-              <h1 className="text-lg font-bold text-[#0D3B2E]">
+              <h1 className="text-lg font-bold text-amber-400">
                 Zuma Business Snapshot
               </h1>
             </div>

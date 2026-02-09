@@ -156,7 +156,7 @@ function BranchContent() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-[#0D3B2E]">Branch & Area</h2>
+        <h2 className="text-xl font-bold text-amber-400">Branch & Area</h2>
         <PeriodTabs value={periodType} onChange={setPeriodType} />
       </div>
 
@@ -173,7 +173,7 @@ function BranchContent() {
       {/* Branch table */}
       {branchLatest.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700">
+          <h3 className="mb-3 text-sm font-semibold text-muted-foreground">
             Branch Performance — {latestPeriod}
           </h3>
           <DataTable data={branchLatest} columns={branchColumns} pageSize={10} />
@@ -183,7 +183,7 @@ function BranchContent() {
       {/* Area table */}
       {areaLatest.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700">
+          <h3 className="mb-3 text-sm font-semibold text-muted-foreground">
             Area Performance — {latestPeriod}
           </h3>
           <DataTable data={areaLatest} columns={areaColumns} pageSize={20} />

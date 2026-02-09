@@ -27,11 +27,11 @@ export default function BranchFilter() {
 
   return (
     <div className="flex items-center gap-2">
-      <Filter className="h-4 w-4 text-gray-400" />
+      <Filter className="h-4 w-4 text-muted-foreground" />
       <select
         value={current}
         onChange={handleChange}
-        className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 focus:border-[#00D084] focus:outline-none focus:ring-1 focus:ring-[#00D084]"
+        className="rounded-none border border-border bg-card px-3 py-1.5 text-sm text-foreground focus:border-[#00D084] focus:outline-none focus:ring-1 focus:ring-[#00D084]"
       >
         {BRANCHES.map((b) => (
           <option key={b} value={b}>

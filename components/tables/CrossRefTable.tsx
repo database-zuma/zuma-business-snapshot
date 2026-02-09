@@ -19,30 +19,30 @@ export default function CrossRefTable({ data, title }: CrossRefTableProps) {
   const placeNames = Object.keys(grouped).sort();
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
-      <div className="border-b border-gray-200 px-5 py-3">
-        <h3 className="text-sm font-semibold text-gray-700">{title}</h3>
+    <div className="rounded-none border border-border bg-card">
+      <div className="border-b border-border px-5 py-3">
+        <h3 className="text-sm font-semibold text-amber-400">{title}</h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-gray-500">
+            <tr className="border-b border-border bg-muted/50">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 Place
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-gray-500">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 #
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-gray-500">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 Series
               </th>
-              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-gray-500">
+              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 Revenue
               </th>
-              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-gray-500">
+              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 Pairs
               </th>
-              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-gray-500">
+              <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase text-muted-foreground tracking-wide">
                 Mix %
               </th>
             </tr>
@@ -54,25 +54,25 @@ export default function CrossRefTable({ data, title }: CrossRefTableProps) {
                 .map((row, idx) => (
                   <tr
                     key={`${place}-${row.rank_within_place}`}
-                    className="border-b border-gray-100 hover:bg-gray-50"
+                    className="border-b border-border hover:bg-muted/50"
                   >
                     {idx === 0 && (
                       <td
                         rowSpan={grouped[place].length}
-                        className="px-4 py-2 font-medium text-gray-800"
+                        className="px-4 py-2 font-medium text-foreground"
                       >
                         {place || "Unassigned"}
                       </td>
                     )}
-                    <td className="px-4 py-2 text-gray-400">{row.rank_within_place}</td>
-                    <td className="px-4 py-2 text-gray-700">{row.series}</td>
-                    <td className="px-4 py-2 text-right text-gray-700">
+                    <td className="px-4 py-2 text-muted-foreground">{row.rank_within_place}</td>
+                    <td className="px-4 py-2 text-foreground">{row.series}</td>
+                    <td className="px-4 py-2 text-right text-foreground font-mono">
                       {formatRupiah(Number(row.revenue))}
                     </td>
-                    <td className="px-4 py-2 text-right text-gray-700">
+                    <td className="px-4 py-2 text-right text-foreground font-mono">
                       {formatPairs(Number(row.pairs))}
                     </td>
-                    <td className="px-4 py-2 text-right text-gray-700">
+                    <td className="px-4 py-2 text-right text-foreground font-mono">
                       {row.mix_pct_within_place != null
                         ? `${Number(row.mix_pct_within_place).toFixed(1)}%`
                         : "-"}

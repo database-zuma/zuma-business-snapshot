@@ -126,7 +126,7 @@ function StoreContent() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-[#0D3B2E]">Store Performance</h2>
+        <h2 className="text-xl font-bold text-amber-400">Store Performance</h2>
         <PeriodTabs value={periodType} onChange={setPeriodType} />
       </div>
 
@@ -143,7 +143,7 @@ function StoreContent() {
       {/* Store table */}
       {storeLatest.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700">
+          <h3 className="mb-3 text-sm font-semibold text-muted-foreground">
             All Stores — {latestPeriod}
           </h3>
           <DataTable data={storeLatest} columns={storeColumns} pageSize={20} />

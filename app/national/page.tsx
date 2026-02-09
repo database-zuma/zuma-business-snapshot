@@ -143,7 +143,7 @@ function NationalContent() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-[#0D3B2E]">National Overview</h2>
+        <h2 className="text-xl font-bold text-amber-400">National Overview</h2>
         <PeriodTabs value={periodType} onChange={setPeriodType} />
       </div>
 
@@ -198,7 +198,7 @@ function NationalContent() {
       {/* Channel table */}
       {channelLatest.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-700">
+          <h3 className="mb-3 text-sm font-semibold text-muted-foreground">
             Channel Breakdown — {latestPeriod}
           </h3>
           <DataTable data={channelLatest} columns={channelColumns} pageSize={10} />

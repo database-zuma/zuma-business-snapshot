@@ -68,12 +68,13 @@ export function formatMixPct(v: number | string | null | undefined): string {
 
 /**
  * Get CSS color class for a percentage change.
- * Positive = green, negative = red, zero/null = gray.
+ * Positive = green, negative = red, zero/null = muted.
+ * Uses brighter colors for dark theme visibility.
  */
 export function pctColor(v: number | string | null | undefined): string {
   const n = toNum(v);
-  if (n == null || n === 0) return "text-gray-500";
-  return n > 0 ? "text-emerald-600" : "text-red-600";
+  if (n == null || n === 0) return "text-neutral-500";
+  return n > 0 ? "text-emerald-400" : "text-red-400";
 }
 
 /**
@@ -93,22 +94,22 @@ export function formatRatio(ratio: string | null | undefined): {
   text: string;
   color: string;
 } {
-  if (!ratio) return { text: "-", color: "text-gray-400" };
+  if (!ratio) return { text: "-", color: "text-neutral-500" };
 
   const match = ratio.match(/1:(\d+)/);
-  if (!match) return { text: ratio, color: "text-gray-400" };
+  if (!match) return { text: ratio, color: "text-neutral-500" };
 
   const x = parseInt(match[1], 10);
-  let color = "text-gray-400";
+  let color = "text-neutral-500";
 
   if (x <= 1) {
-    color = "text-red-600";
+    color = "text-red-400";
   } else if (x >= 2 && x <= 4) {
-    color = "text-emerald-600";
+    color = "text-emerald-400";
   } else if (x >= 5 && x <= 7) {
-    color = "text-yellow-600";
+    color = "text-yellow-400";
   } else if (x >= 8) {
-    color = "text-yellow-600";
+    color = "text-yellow-400";
   }
 
   return { text: ratio, color };

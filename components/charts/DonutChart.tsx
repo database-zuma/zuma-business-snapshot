@@ -11,7 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatRupiah } from "@/lib/format";
 
-const COLORS = ["#00D084", "#0D3B2E", "#6ee7b7", "#34d399", "#a7f3d0", "#065f46"];
+const COLORS = ["#00D084", "#FF9F43", "#38bdf8", "#a78bfa", "#f472b6", "#22d3ee"];
 
 interface DonutChartProps {
   data: { name: string; value: number }[];
@@ -44,15 +44,16 @@ export default function DonutChart({ data, title }: DonutChartProps) {
             <Tooltip 
               formatter={(value) => formatRupiah(Number(value))}
               contentStyle={{
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "6px",
+                backgroundColor: "#111",
+                border: "1px solid #262626",
+                borderRadius: 0,
               }}
             />
             <Legend
               verticalAlign="bottom"
               height={36}
               formatter={(value: string) => value}
+              wrapperStyle={{ color: "#737373" }}
             />
           </PieChart>
         </ResponsiveContainer>

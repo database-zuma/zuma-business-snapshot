@@ -27,29 +27,29 @@ export default function TrendLine({ data, title }: TrendLineProps) {
       <CardContent>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" />
             <XAxis
               dataKey="label"
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: "#737373" }}
               tickLine={false}
-              axisLine={{ stroke: "hsl(var(--border))" }}
+              axisLine={{ stroke: "#262626" }}
             />
             <YAxis
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: "#737373" }}
               tickLine={false}
-              axisLine={{ stroke: "hsl(var(--border))" }}
+              axisLine={{ stroke: "#262626" }}
               tickFormatter={(v: number) => formatRupiah(v)}
             />
             <Tooltip
               formatter={(value) => formatRupiah(Number(value))}
-              labelStyle={{ fontWeight: 600 }}
+              labelStyle={{ fontWeight: 600, color: "#e0e0e0" }}
               contentStyle={{
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "6px",
+                backgroundColor: "#111",
+                border: "1px solid #262626",
+                borderRadius: 0,
               }}
             />
-            <Legend />
+            <Legend wrapperStyle={{ color: "#737373" }} />
             <Line
               type="monotone"
               dataKey="ty"
@@ -63,10 +63,10 @@ export default function TrendLine({ data, title }: TrendLineProps) {
               type="monotone"
               dataKey="ly"
               name="Last Year"
-              stroke="hsl(var(--muted-foreground))"
+              stroke="#525252"
               strokeWidth={2}
               strokeDasharray="5 5"
-              dot={{ r: 3 }}
+              dot={{ r: 3, fill: "#525252" }}
             />
           </LineChart>
         </ResponsiveContainer>
