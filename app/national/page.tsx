@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState, useCallback, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { PeriodType, SalesNationalRow, SalesByChannelRow, ApiResponse } from "@/lib/types";
-import { formatRupiah, formatPairs, formatAsp, formatPct, pctColor, vsPrevLabel } from "@/lib/format";
+import { formatRupiah, formatPairs, formatAsp, formatPct, formatMixPct, pctColor, vsPrevLabel } from "@/lib/format";
 import PeriodTabs from "@/components/layout/PeriodTabs";
 import ScoreCard from "@/components/tables/ScoreCard";
 import TrendLine from "@/components/charts/TrendLine";
@@ -92,7 +92,11 @@ function NationalContent() {
 
   const channelColumns: ColumnDef<SalesByChannelRow, unknown>[] = useMemo(
     () => [
-      { accessorKey: "store_category", header: "Channel" },
+      { 
+        accessorKey: "store_category", 
+        header: "Channel",
+        cell: ({ getValue }) => getValue() || "Unassigned",
+      },
       {
         accessorKey: "revenue",
         header: "Revenue",
@@ -124,7 +128,7 @@ function NationalContent() {
       {
         accessorKey: "mix_pct",
         header: "Mix %",
-        cell: ({ getValue }) => formatPct(getValue() as string | number | null),
+        cell: ({ getValue }) => formatMixPct(getValue() as string | number | null),
       },
     ],
     []

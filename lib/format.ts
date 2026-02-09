@@ -58,6 +58,15 @@ export function formatPct(v: number | string | null | undefined): string {
 }
 
 /**
+ * Format a mix percentage (no +/- sign, just plain %): 62.9%, 37.1%
+ */
+export function formatMixPct(v: number | string | null | undefined): string {
+  const n = toNum(v);
+  if (n == null) return "-";
+  return `${n.toFixed(1)}%`;
+}
+
+/**
  * Get CSS color class for a percentage change.
  * Positive = green, negative = red, zero/null = gray.
  */
