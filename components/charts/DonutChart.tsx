@@ -47,7 +47,10 @@ export default function DonutChart({ data, title }: DonutChartProps) {
                 backgroundColor: "#111",
                 border: "1px solid #262626",
                 borderRadius: 0,
+                color: "#e0e0e0",
               }}
+              itemStyle={{ color: "#e0e0e0" }}
+              labelStyle={{ color: "#e0e0e0" }}
             />
             <Legend
               verticalAlign="bottom"

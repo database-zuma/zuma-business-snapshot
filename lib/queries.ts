@@ -78,13 +78,29 @@ export async function querySalesByStore(filters: QueryFilters) {
 
 export async function querySalesByProduct(filters: QueryFilters) {
   const q = buildQuery("mart.sales_by_product", filters, false, "revenue DESC");
-  const { rows } = await pool.query(q.text, q.values);
+  // Exclude bags (shopbag, paperbag, etc.) - focus on sandals only
+  const bagExclusionClause = q.text.includes("WHERE")
+    ? " AND LOWER(tipe) NOT LIKE '%bag%'"
+    : " WHERE LOWER(tipe) NOT LIKE '%bag%'";
+  const textWithExclusion = q.text.replace(
+    / ORDER BY/,
+    bagExclusionClause + " ORDER BY"
+  );
+  const { rows } = await pool.query(textWithExclusion, q.values);
   return rows;
 }
 
 export async function querySalesByArticle(filters: QueryFilters) {
   const q = buildQuery("mart.sales_by_article", filters, false, "revenue DESC");
-  const { rows } = await pool.query(q.text, q.values);
+  // Exclude bags (shopbag, paperbag, etc.) - focus on sandals only
+  const bagExclusionClause = q.text.includes("WHERE")
+    ? " AND LOWER(tipe) NOT LIKE '%bag%'"
+    : " WHERE LOWER(tipe) NOT LIKE '%bag%'";
+  const textWithExclusion = q.text.replace(
+    / ORDER BY/,
+    bagExclusionClause + " ORDER BY"
+  );
+  const { rows } = await pool.query(textWithExclusion, q.values);
   return rows;
 }
 
@@ -95,6 +111,15 @@ export async function queryTopProductsByPlace(filters: QueryFilters) {
     false,
     "place_name, rank_within_place"
   );
-  const { rows } = await pool.query(q.text, q.values);
+  // Exclude bags (shopbag, paperbag, etc.) - focus on sandals only
+  // Note: top_products_by_place uses 'series' field, bags may appear as series names
+  const bagExclusionClause = q.text.includes("WHERE")
+    ? " AND LOWER(series) NOT LIKE '%bag%'"
+    : " WHERE LOWER(series) NOT LIKE '%bag%'";
+  const textWithExclusion = q.text.replace(
+    / ORDER BY/,
+    bagExclusionClause + " ORDER BY"
+  );
+  const { rows } = await pool.query(textWithExclusion, q.values);
   return rows;
 }
