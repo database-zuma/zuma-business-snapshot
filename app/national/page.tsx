@@ -103,13 +103,16 @@ function NationalContent() {
         cell: ({ getValue }) => formatRupiah(Number(getValue())),
       },
       {
-        accessorKey: "revenue_ly",
-        header: "Revenue LY",
-        cell: ({ getValue }) => formatRupiah(Number(getValue())),
+        accessorKey: "revenue_prev_pct",
+        header: `${prevLabel} %`,
+        cell: ({ getValue }) => {
+          const v = getValue() as number | null;
+          return <span className={pctColor(v)}>{formatPct(v)}</span>;
+        },
       },
       {
         accessorKey: "revenue_ly_pct",
-        header: "YoY %",
+        header: "vs LY %",
         cell: ({ getValue }) => {
           const v = getValue() as number | null;
           return <span className={pctColor(v)}>{formatPct(v)}</span>;
@@ -131,7 +134,7 @@ function NationalContent() {
         cell: ({ getValue }) => formatMixPct(getValue() as string | number | null),
       },
     ],
-    []
+    [prevLabel]
   );
 
   if (loading) return <LoadingState />;
