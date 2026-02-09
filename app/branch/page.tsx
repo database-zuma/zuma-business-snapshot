@@ -124,10 +124,7 @@ function BranchContent() {
       {
         accessorKey: "mix_pct",
         header: "Mix %",
-        cell: ({ getValue }) => {
-          const v = getValue() as number | null;
-          return v != null ? `${Number(v).toFixed(1)}%` : "-";
-        },
+        cell: ({ getValue }) => formatPct(getValue() as string | number | null),
       },
     ],
     []

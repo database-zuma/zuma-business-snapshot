@@ -1,8 +1,18 @@
 /**
+ * Safely coerce a value to number. pg returns numeric/bigint as strings.
+ */
+function toNum(v: unknown): number | null {
+  if (v == null || v === "") return null;
+  const n = Number(v);
+  return isNaN(n) ? null : n;
+}
+
+/**
  * Format a number as Indonesian Rupiah with abbreviation.
  * Rp 86.99 Bn, Rp 5.88 Bn, Rp 84.2 M, Rp 1.2 K
  */
-export function formatRupiah(n: number | null | undefined): string {
+export function formatRupiah(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null) return "-";
   const abs = Math.abs(n);
   const sign = n < 0 ? "-" : "";
@@ -22,7 +32,8 @@ export function formatRupiah(n: number | null | undefined): string {
 /**
  * Format pairs count with abbreviation: 12.5K, 1.2M
  */
-export function formatPairs(n: number | null | undefined): string {
+export function formatPairs(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null) return "-";
   const abs = Math.abs(n);
   const sign = n < 0 ? "-" : "";
@@ -39,7 +50,8 @@ export function formatPairs(n: number | null | undefined): string {
 /**
  * Format a percentage value: +12.5%, -4.0%, null → "-"
  */
-export function formatPct(n: number | null | undefined): string {
+export function formatPct(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null) return "-";
   const sign = n > 0 ? "+" : "";
   return `${sign}${n.toFixed(1)}%`;
@@ -49,7 +61,8 @@ export function formatPct(n: number | null | undefined): string {
  * Get CSS color class for a percentage change.
  * Positive = green, negative = red, zero/null = gray.
  */
-export function pctColor(n: number | null | undefined): string {
+export function pctColor(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null || n === 0) return "text-gray-500";
   return n > 0 ? "text-emerald-600" : "text-red-600";
 }
@@ -57,7 +70,8 @@ export function pctColor(n: number | null | undefined): string {
 /**
  * Format ASP (average selling price) as Rupiah without abbreviation.
  */
-export function formatAsp(n: number | null | undefined): string {
+export function formatAsp(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null) return "-";
   return `Rp ${Math.round(n).toLocaleString("id-ID")}`;
 }
@@ -94,7 +108,8 @@ export function formatRatio(ratio: string | null | undefined): {
 /**
  * Format a number with commas: 1,234,567
  */
-export function formatNumber(n: number | null | undefined): string {
+export function formatNumber(v: number | string | null | undefined): string {
+  const n = toNum(v);
   if (n == null) return "-";
   return Math.round(n).toLocaleString("id-ID");
 }

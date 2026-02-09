@@ -145,15 +145,12 @@ function ProductContent() {
       {
         accessorKey: "mix_pct",
         header: "Mix %",
-        cell: ({ getValue }) => {
-          const v = getValue() as number | null;
-          return v != null ? `${Number(v).toFixed(1)}%` : "-";
-        },
+        cell: ({ getValue }) => formatPct(getValue() as string | number | null),
       },
       {
         accessorKey: "current_stock",
         header: "Stock",
-        cell: ({ getValue }) => formatNumber(Number(getValue())),
+        cell: ({ getValue }) => formatNumber(getValue() as string | number | null),
       },
       {
         accessorKey: "sales_stock_ratio",
@@ -187,15 +184,12 @@ function ProductContent() {
       {
         accessorKey: "mix_pct",
         header: "Mix %",
-        cell: ({ getValue }) => {
-          const v = getValue() as number | null;
-          return v != null ? `${Number(v).toFixed(1)}%` : "-";
-        },
+        cell: ({ getValue }) => formatPct(getValue() as string | number | null),
       },
       {
         accessorKey: "current_stock",
         header: "Stock",
-        cell: ({ getValue }) => formatNumber(Number(getValue())),
+        cell: ({ getValue }) => formatNumber(getValue() as string | number | null),
       },
       {
         accessorKey: "sales_stock_ratio",
