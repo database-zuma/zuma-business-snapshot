@@ -1,6 +1,9 @@
 "use client";
 
-import { formatRupiah, formatPairs, formatAsp, formatPct, pctColor } from "@/lib/format";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { TrendingUp, TrendingDown } from "lucide-react";
+import { formatRupiah, formatPairs, formatAsp, formatPct } from "@/lib/format";
 
 interface ScoreCardProps {
   label: string;
@@ -33,30 +36,53 @@ export default function ScoreCard({
   vsLy,
   format,
 }: ScoreCardProps) {
+  const getBadgeVariant = (val: number | null): "default" | "secondary" | "destructive" => {
+    if (val == null || val === 0) return "secondary";
+    return val > 0 ? "default" : "destructive";
+  };
+
+  const TrendIcon = ({ val }: { val: number | null }) => {
+    if (val == null || val === 0) return null;
+    return val > 0 ? (
+      <TrendingUp className="h-3 w-3" />
+    ) : (
+      <TrendingDown className="h-3 w-3" />
+    );
+  };
+
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-gray-500">{label}</p>
-      <p className="mt-1 text-2xl font-bold text-[#0D3B2E]">
-        {formatValue(value, format)}
-      </p>
-      <div className="mt-3 flex flex-col gap-1">
-        {vsPrev != null && (
-          <div className="flex items-center gap-1.5 text-xs">
-            <span className={`font-semibold ${pctColor(vsPrev)}`}>
-              {formatPct(vsPrev)}
-            </span>
-            <span className="text-gray-400">{vsPrevLabel}</span>
-          </div>
-        )}
-        {vsLy != null && (
-          <div className="flex items-center gap-1.5 text-xs">
-            <span className={`font-semibold ${pctColor(vsLy)}`}>
-              {formatPct(vsLy)}
-            </span>
-            <span className="text-gray-400">vs LY</span>
-          </div>
-        )}
-      </div>
-    </div>
+    <Card className="hover:shadow-md transition-shadow border-l-4 border-l-[#00D084]">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground">
+          {label}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="text-3xl font-bold text-[#0D3B2E] tracking-tight">
+          {formatValue(value, format)}
+        </div>
+        
+        <div className="mt-4 flex flex-col gap-2">
+          {vsPrev != null && (
+            <div className="flex items-center gap-2">
+              <Badge variant={getBadgeVariant(vsPrev)} className="text-xs">
+                <TrendIcon val={vsPrev} />
+                {formatPct(vsPrev)}
+              </Badge>
+              <span className="text-xs text-muted-foreground">{vsPrevLabel}</span>
+            </div>
+          )}
+          {vsLy != null && (
+            <div className="flex items-center gap-2">
+              <Badge variant={getBadgeVariant(vsLy)} className="text-xs">
+                <TrendIcon val={vsLy} />
+                {formatPct(vsLy)}
+              </Badge>
+              <span className="text-xs text-muted-foreground">vs LY</span>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

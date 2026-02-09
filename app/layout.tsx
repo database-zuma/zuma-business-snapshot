@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import BranchFilter from "@/components/filters/BranchFilter";
 import { Suspense } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -28,19 +24,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
+        className={`${plusJakartaSans.variable} font-sans antialiased bg-background`}
       >
         <Sidebar />
-        <div className="ml-56 min-h-screen">
-          <header className="sticky top-0 z-30 flex items-center justify-between border-b border-gray-200 bg-white/80 px-6 py-3 backdrop-blur-sm">
-            <h1 className="text-lg font-bold text-[#0D3B2E]">
-              Zuma Business Snapshot
-            </h1>
+        <div className="md:ml-56 min-h-screen">
+          <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/95 px-6 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="flex items-center gap-4">
+              <h1 className="text-lg font-bold text-[#0D3B2E]">
+                Zuma Business Snapshot
+              </h1>
+            </div>
             <Suspense fallback={null}>
               <BranchFilter />
             </Suspense>
           </header>
-          <main className="p-6">{children}</main>
+          <main className="p-4 md:p-6">{children}</main>
         </div>
       </body>
     </html>
